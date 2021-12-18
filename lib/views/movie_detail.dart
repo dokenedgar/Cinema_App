@@ -1,10 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cinema_app/views/test_render_box.dart';
 import 'package:cinema_app/widgets/date_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class MovieDetail extends StatefulWidget {
@@ -17,11 +15,10 @@ class MovieDetail extends StatefulWidget {
 class _MovieDetailState extends State<MovieDetail> {
   int dayIndex = 1;
   PageController pageController =
-  PageController(initialPage: 1, viewportFraction: 0.23);
+      PageController(initialPage: 1, viewportFraction: 0.23);
 
-  //ScrollController controller = FixedExtentScrollController();
   List<String> days = ['Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  ScrollController controller = ScrollController();
+
   List<String> genres = [
     'Action',
     //'Comedy',
@@ -36,33 +33,10 @@ class _MovieDetailState extends State<MovieDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   systemOverlayStyle: SystemUiOverlayStyle.dark,
-      //   automaticallyImplyLeading: false,
-      //   backgroundColor: Colors.white,
-      //   leading:  IconButton(
-      //     onPressed: () => Navigator.pop(context),
-      //     icon: const Icon(Icons.arrow_back_ios, color: Colors.black,),
-      //   ),
-      //   title: const Text(
-      //     'Detail',
-      //     style: TextStyle(
-      //       fontWeight: FontWeight.bold,
-      //       color: Colors.black
-      //     ),
-      //   ),
-      //   actions: [
-      //     IconButton(
-      //       onPressed: () => Navigator.pop(context),
-      //       icon: const Icon(Icons.share_outlined, color: Colors.black,),
-      //     ),
-      //   ],
-      // ),
       body: SafeArea(
         child: Stack(
           children: [
             SingleChildScrollView(
-              //physics: PageScrollPhysics(),
               child: Padding(
                 padding: const EdgeInsets.only(bottom: kToolbarHeight),
                 child: Column(
@@ -98,22 +72,21 @@ class _MovieDetailState extends State<MovieDetail> {
                         child: CachedNetworkImage(
                           filterQuality: FilterQuality.medium,
                           imageUrl:
-                          //'https://m.media-amazon.com/images/M/MV5BOTIzYmUyMmEtMWQzNC00YzExLTk3MzYtZTUzYjMyMmRiYzIwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_SX300.jpg',
-                          'https://m.media-amazon.com/images/M/MV5BZGExZTUzYWQtYWJjZi00OTI4LTk4OGYtNTA2YzcwMmNiZTMxXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX1000_.jpg',
-                          imageBuilder: (context, imageProvider) =>
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
+                              //'https://m.media-amazon.com/images/M/MV5BOTIzYmUyMmEtMWQzNC00YzExLTk3MzYtZTUzYjMyMmRiYzIwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_SX300.jpg',
+                              'https://m.media-amazon.com/images/M/MV5BZGExZTUzYWQtYWJjZi00OTI4LTk4OGYtNTA2YzcwMmNiZTMxXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX1000_.jpg',
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.fill,
                               ),
+                            ),
+                          ),
                           placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
+                              const CircularProgressIndicator(),
                           errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
+                              const Icon(Icons.error),
                         ),
                       ),
                     ),
@@ -133,8 +106,7 @@ class _MovieDetailState extends State<MovieDetail> {
                       spacing: 4,
                       children: List.generate(
                           genres.length,
-                              (index) =>
-                              Chip(
+                          (index) => Chip(
                                 label: Text(genres[index]),
                               )).toList(),
                     ),
@@ -199,96 +171,53 @@ class _MovieDetailState extends State<MovieDetail> {
                         ),
                       ),
                     ),
-                    // SizedBox(
-                    //   height: 200,
-                    //   child: RotatedBox(
-                    //     quarterTurns: -1,
-                    //     child: CupertinoPicker(
-                    //       offAxisFraction: 0,
-                    //       looping: false,
-                    //       useMagnifier: true,
-                    //       magnification: 1.3,
-                    //       itemExtent: 80,
-                    //       squeeze: 1,
-                    //       selectionOverlay: null,
-                    //       //  CupertinoPickerDefaultSelectionOverlay(
-                    //       //background: CupertinoColors.tertiarySystemFill,
-                    //       //),
-                    //       onSelectedItemChanged: (index) {
-                    //         print('new picker $index');
-                    //         setState(() {
-                    //           dayIndex = index;
-                    //         });
-                    //       },
-                    //       children: List.generate(
-                    //         genres.length,
-                    //             (index) => RotatedBox(
-                    //           quarterTurns: 1,
-                    //           child: Padding(
-                    //               padding: EdgeInsets.all(8),
-                    //               child: DateCard(
-                    //                 backgroundColor: dayIndex == index
-                    //                     ? Colors.deepOrange
-                    //                     : Colors.grey,
-                    //               )),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-
                     SizedBox(
                       height: 150,
-                      child: Container(
-                        //color: Colors.grey,
-                        child: PageView.builder(
-                          physics: const CustomPageViewScrollPhysics(),
-                          itemCount: 5,
-                          pageSnapping: true,
-                          controller: pageController,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Stack(
-                              children: [
-                                if (dayIndex == index)
-                                  DateCard(
-                                   day: days[index],
-                                    date: (index + 10).toString(),
-                                    isSelected: true,
-                                  ),
-                                if (dayIndex != index)
-                                  Positioned(
-                                    bottom: 20,
-                                    child: InkWell(
-                                      onTap: () =>
-                                          pageController.animateToPage(
-                                            index,
-                                            duration: Duration(
-                                                milliseconds: 500),
-                                            curve: Curves
-                                                .fastLinearToSlowEaseIn,
-                                          ),
-                                      child: DateCard(
-                                        date: (index + 10).toString(),
-                                        day: days[index],
-                                        isSelected: false,
-                                      ),
+                      child: PageView.builder(
+                        physics: const CustomPageViewScrollPhysics(),
+                        itemCount: 5,
+                        pageSnapping: true,
+                        controller: pageController,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Stack(
+                            children: [
+                              if (dayIndex == index)
+                                DateCard(
+                                  day: days[index],
+                                  date: (index + 10).toString(),
+                                  isSelected: true,
+                                ),
+                              if (dayIndex != index)
+                                Positioned(
+                                  bottom: 20,
+                                  child: InkWell(
+                                    onTap: () => pageController.animateToPage(
+                                      index,
+                                      duration:
+                                          const Duration(milliseconds: 500),
+                                      curve: Curves.fastLinearToSlowEaseIn,
+                                    ),
+                                    child: DateCard(
+                                      date: (index + 10).toString(),
+                                      day: days[index],
+                                      isSelected: false,
                                     ),
                                   ),
-                              ],
-                            );
-                          },
-                          onPageChanged: (index) {
-                            setState(() {
-                              dayIndex = index;
-                            });
-                          },
-                        ),
+                                ),
+                            ],
+                          );
+                        },
+                        onPageChanged: (index) {
+                          setState(() {
+                            dayIndex = index;
+                          });
+                        },
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                   ],
@@ -298,7 +227,6 @@ class _MovieDetailState extends State<MovieDetail> {
             Align(
               alignment: Alignment.bottomCenter,
               child: SizedBox(
-                //margin: const EdgeInsets.all(5),
                 height: kToolbarHeight,
                 width: 200,
                 child: ElevatedButton(
@@ -306,8 +234,6 @@ class _MovieDetailState extends State<MovieDetail> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12))),
                   onPressed: () async {
-                    //await showTimePicker(context: context, initialTime: TimeOfDay.now());
-
                     await CachedNetworkImage.evictFromCache(
                         'https://m.media-amazon.com/images/M/MV5BZGExZTUzYWQtYWJjZi00OTI4LTk4OGYtNTA2YzcwMmNiZTMxXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX1000_.jpg');
                     //await CachedNetworkImage.evictFromCache('https://m.media-amazon.com/images/M/MV5BMDUzNWJhZWQtYzU3Zi00M2NjLThjZjEtMTRmMjRmNzBmMWI2XkEyXkFqcGdeQXVyODIyOTEyMzY@._V1_SX300.jpg');

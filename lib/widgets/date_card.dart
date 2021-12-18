@@ -27,7 +27,7 @@ class _DateCardState extends State<DateCard> {
       width: 80,
       child: Stack(
         children: [
-          Positioned(
+          const Positioned(
             bottom: 18,
             left: -8,
             child: Icon(
@@ -35,7 +35,7 @@ class _DateCardState extends State<DateCard> {
               size: 14,
             ),
           ),
-          Positioned(
+          const Positioned(
             bottom: 18,
             right: -8,
             child: Icon(
@@ -43,7 +43,7 @@ class _DateCardState extends State<DateCard> {
               size: 14,
             ),
           ),
-          Padding(
+          const Padding(
             padding: const EdgeInsets.only(top: 12.0),
             child: Align(
               alignment: Alignment.topCenter,
@@ -66,7 +66,7 @@ class _DateCardState extends State<DateCard> {
                 ),
                 Text(
                   widget.date,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
