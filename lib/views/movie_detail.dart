@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cinema_app/views/buy_ticket.dart';
 import 'package:cinema_app/views/test_render_box.dart';
-import 'package:cinema_app/widgets/date_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -13,11 +13,6 @@ class MovieDetail extends StatefulWidget {
 }
 
 class _MovieDetailState extends State<MovieDetail> {
-  int dayIndex = 1;
-  PageController pageController =
-      PageController(initialPage: 1, viewportFraction: 0.23);
-
-  List<String> days = ['Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   List<String> genres = [
     'Action',
@@ -174,74 +169,22 @@ class _MovieDetailState extends State<MovieDetail> {
                     const SizedBox(
                       height: 20,
                     ),
-                    SizedBox(
-                      height: 150,
-                      child: PageView.builder(
-                        physics: const CustomPageViewScrollPhysics(),
-                        itemCount: 5,
-                        pageSnapping: true,
-                        controller: pageController,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Stack(
-                            children: [
-                              if (dayIndex == index)
-                                DateCard(
-                                  day: days[index],
-                                  date: (index + 10).toString(),
-                                  isSelected: true,
-                                ),
-                              if (dayIndex != index)
-                                Positioned(
-                                  bottom: 20,
-                                  child: InkWell(
-                                    onTap: () => pageController.animateToPage(
-                                      index,
-                                      duration:
-                                          const Duration(milliseconds: 500),
-                                      curve: Curves.fastLinearToSlowEaseIn,
-                                    ),
-                                    child: DateCard(
-                                      date: (index + 10).toString(),
-                                      day: days[index],
-                                      isSelected: false,
-                                    ),
-                                  ),
-                                ),
-                            ],
-                          );
-                        },
-                        onPageChanged: (index) {
-                          setState(() {
-                            dayIndex = index;
-                          });
-                        },
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
                   ],
                 ),
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                height: kToolbarHeight,
-                width: 200,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12))),
-                  onPressed: () async {
-                    await CachedNetworkImage.evictFromCache(
-                        'https://m.media-amazon.com/images/M/MV5BZGExZTUzYWQtYWJjZi00OTI4LTk4OGYtNTA2YzcwMmNiZTMxXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX1000_.jpg');
-                    //await CachedNetworkImage.evictFromCache('https://m.media-amazon.com/images/M/MV5BMDUzNWJhZWQtYzU3Zi00M2NjLThjZjEtMTRmMjRmNzBmMWI2XkEyXkFqcGdeQXVyODIyOTEyMzY@._V1_SX300.jpg');
-                  },
-                  child: const Text(
-                    'Buy Ticket',
-                    style: TextStyle(fontSize: 16),
-                  ),
+              child: CupertinoButton.filled(
+                onPressed: () async {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const BuyTicket() ));
+                  // await CachedNetworkImage.evictFromCache(
+                  //     'https://m.media-amazon.com/images/M/MV5BZGExZTUzYWQtYWJjZi00OTI4LTk4OGYtNTA2YzcwMmNiZTMxXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX1000_.jpg');
+                  //await CachedNetworkImage.evictFromCache('https://m.media-amazon.com/images/M/MV5BMDUzNWJhZWQtYzU3Zi00M2NjLThjZjEtMTRmMjRmNzBmMWI2XkEyXkFqcGdeQXVyODIyOTEyMzY@._V1_SX300.jpg');
+                },
+                child: const Text(
+                  'Buy Ticket',
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
             )

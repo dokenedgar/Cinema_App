@@ -37,6 +37,7 @@ dependencies:
   cached_network_image: ^3.2.0
   carousel_slider: ^4.0.0
   flutter_rating_bar: ^4.0.0
+  intl: ^0.17.0
   #new_gradient_app_bar: ^0.2.0
 
 dev_dependencies:
