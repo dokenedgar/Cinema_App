@@ -36,7 +36,9 @@ class MovieCardHomeScreen extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const MovieDetail(),
+          builder: (context) => MovieDetail(
+            movie: movie,
+          ),
         ),
       ),
       child: Column(

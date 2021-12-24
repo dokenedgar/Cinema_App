@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cinema_app/models/movie.dart';
 import 'package:cinema_app/views/buy_ticket.dart';
 import 'package:cinema_app/views/test_render_box.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,25 +7,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class MovieDetail extends StatefulWidget {
-  const MovieDetail({Key? key}) : super(key: key);
+  const MovieDetail({Key? key, required this.movie}) : super(key: key);
+  final Movie movie;
 
   @override
   _MovieDetailState createState() => _MovieDetailState();
 }
 
+String dateToString(int date) {
+  if (date == 0) return 'Duration: N/A';
+  String result;
+  int hour, minute;
+  hour = (date / 60).truncate();
+  minute = date - (60 * hour);
+  if (hour < 10) {
+    result = '0${hour}h ';
+  } else {
+    result = '${hour}h ';
+  }
+
+  if (minute < 10) {
+    result += '0${minute}m';
+  } else {
+    result += '${minute}m';
+  }
+  return result;
+}
+
 class _MovieDetailState extends State<MovieDetail> {
-
-  List<String> genres = [
-    'Action',
-    //'Comedy',
-    'Drama',
-    'History'
-    //'Horror',
-    //'Sport',
-    //'Romance',
-    //'Tragedy'
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,15 +70,13 @@ class _MovieDetailState extends State<MovieDetail> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: SizedBox(
-                        height: 400,
-                        width: 330,
+                        height: 450,
+                        width: 350,
                         child: CachedNetworkImage(
                           filterQuality: FilterQuality.medium,
-                          imageUrl:
-                              //'https://m.media-amazon.com/images/M/MV5BOTIzYmUyMmEtMWQzNC00YzExLTk3MzYtZTUzYjMyMmRiYzIwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_SX300.jpg',
-                              'https://m.media-amazon.com/images/M/MV5BZGExZTUzYWQtYWJjZi00OTI4LTk4OGYtNTA2YzcwMmNiZTMxXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX1000_.jpg',
+                          imageUrl: widget.movie.imageLarge,
                           imageBuilder: (context, imageProvider) => Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
@@ -85,12 +93,12 @@ class _MovieDetailState extends State<MovieDetail> {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
                       child: Text(
-                        'The Last Duel',
+                        widget.movie.title,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
@@ -100,9 +108,9 @@ class _MovieDetailState extends State<MovieDetail> {
                       alignment: WrapAlignment.center,
                       spacing: 4,
                       children: List.generate(
-                          genres.length,
+                          widget.movie.genre.length,
                           (index) => Chip(
-                                label: Text(genres[index]),
+                                label: Text(widget.movie.genre[index]),
                               )).toList(),
                     ),
                     Padding(
@@ -111,7 +119,7 @@ class _MovieDetailState extends State<MovieDetail> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text('2021'),
+                            Text(widget.movie.year.toString()),
                             const VerticalDivider(
                               color: Colors.black,
                             ),
@@ -119,7 +127,7 @@ class _MovieDetailState extends State<MovieDetail> {
                               allowHalfRating: true,
                               ignoreGestures: true,
                               updateOnDrag: false,
-                              initialRating: 3.5,
+                              initialRating: num.parse(widget.movie.rating.toString()).toDouble(),
                               itemSize: 24,
                               itemBuilder: (context, _) {
                                 return const Icon(
@@ -134,11 +142,13 @@ class _MovieDetailState extends State<MovieDetail> {
                             const VerticalDivider(
                               color: Colors.black,
                             ),
-                            const Text('02h 18m'),
+                            Text(
+                              dateToString(widget.movie.duration),
+                            ),
                             const VerticalDivider(
                               color: Colors.black,
                             ),
-                            const Text('PG - 13')
+                            Text(widget.movie.mpaRating)
                           ],
                         ),
                       ),
@@ -156,13 +166,12 @@ class _MovieDetailState extends State<MovieDetail> {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 8.0, left: 24, right: 24),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 24, right: 24),
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: Text(
-                          //"Twentieth Century Studios and Locksmith Animation’s “Ron’s Gone Wrong” is the story of Barney, a socially awkward middle-schooler and Ron, his new walking, talking, digitally-connected device, which is supposed to be his ‘Best Friend out of the Box.’ Ron’s hilarious malfunctions set against the backdrop of the social media age, launch them into an action-packed journey in which boy and robot come to terms with the wonderful messiness of true friendship."
-                          "Told in three viewpoints: husband’s, rapist, wife’s is very informing. Lots of medieval fighting and court machinations. Jodie Comer, Matt Damon, and Adam Driver are well-cast as three leads. Over two hours long but won’t feel it. Stay for update at end.",
+                          widget.movie.synopsis
                         ),
                       ),
                     ),
@@ -177,7 +186,10 @@ class _MovieDetailState extends State<MovieDetail> {
               alignment: Alignment.bottomCenter,
               child: CupertinoButton.filled(
                 onPressed: () async {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const BuyTicket() ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const BuyTicket()));
                   // await CachedNetworkImage.evictFromCache(
                   //     'https://m.media-amazon.com/images/M/MV5BZGExZTUzYWQtYWJjZi00OTI4LTk4OGYtNTA2YzcwMmNiZTMxXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX1000_.jpg');
                   //await CachedNetworkImage.evictFromCache('https://m.media-amazon.com/images/M/MV5BMDUzNWJhZWQtYzU3Zi00M2NjLThjZjEtMTRmMjRmNzBmMWI2XkEyXkFqcGdeQXVyODIyOTEyMzY@._V1_SX300.jpg');

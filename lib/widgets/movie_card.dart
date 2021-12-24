@@ -17,8 +17,8 @@ class _MovieCardState extends State<MovieCard> {
       padding: const EdgeInsets.only(right: 16.0),
       child: InkWell(
         onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const MovieDetail()));
+          //Navigator.push(
+            //  context, MaterialPageRoute(builder: (context) => const MovieDetail()));
         },
         child: SizedBox(
           //color: Colors.grey,
