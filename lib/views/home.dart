@@ -1,14 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cinema_app/models/bottom_nav_bar_enums.dart';
-import 'package:cinema_app/service/web_service.dart';
 import 'package:cinema_app/view_model/movie_list_home_screen_view_model.dart';
-import 'package:cinema_app/views/movie_detail.dart';
 import 'package:cinema_app/widgets/genre.dart';
+import 'package:cinema_app/widgets/movie_card_home_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -25,6 +22,9 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     mvList.addListener(() {
+      setState(() {
+
+      });
       print('val change... ${mvList.movies.length}');
     });
     mvList.getMovies();
@@ -184,48 +184,18 @@ class _HomeState extends State<Home> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 24.0),
-                child: CarouselSlider(
+                child: mvList.movies.isEmpty ? CircularProgressIndicator() : CarouselSlider(
                   items: List.generate(
-                    5,
-                    (index) => InkWell(
-                      // should be a movie model / object?
-
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const MovieDetail(),
-                        ),
-                      ),
-                      child: SizedBox(
-                        height: 300,
-                        width: 300,
-                        child: CachedNetworkImage(
-                          filterQuality: FilterQuality.medium,
-                          imageUrl:
-                              'https://m.media-amazon.com/images/M/MV5BMDUzNWJhZWQtYzU3Zi00M2NjLThjZjEtMTRmMjRmNzBmMWI2XkEyXkFqcGdeQXVyODIyOTEyMzY@._V1_SX300.jpg',
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                        ),
-                      ),
-                    ),
+                    mvList.movies.length,
+                    (index) => MovieCardHomeScreen(movie: mvList.movies[index]),
                   ),
                   options: CarouselOptions(
                       //height: 300,
-                      aspectRatio: 1.1,
+                      aspectRatio: 0.92,
                       viewportFraction: 0.6,
                       enlargeCenterPage: true,
-                      initialPage: 1,
+                      enableInfiniteScroll: false,
+                      initialPage: 0,
                       onPageChanged: (index, reason) {
                         print('index $index');
                         print('reason $reason');
@@ -235,31 +205,7 @@ class _HomeState extends State<Home> {
                       }),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
-                child: Text(
-                  'Spider Man: No Way Home $title',
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ),
-              const Text('02 Hours, 18 Minutes'),
-              RatingBar.builder(
-                allowHalfRating: true,
-                ignoreGestures: true,
-                updateOnDrag: false,
-                initialRating: 3.5,
-                itemSize: 24,
-                itemBuilder: (context, _) {
-                  return const Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  );
-                },
-                onRatingUpdate: (value) {
-                  print('update.. $value');
-                },
-              ),
+
             ],
           ),
         ),
