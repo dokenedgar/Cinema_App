@@ -2,10 +2,10 @@ class Movie {
   final int id;
   final String title;
   final int duration;
-  final int rating;
+  final dynamic rating;
   final String imageMedium;
   final String imageLarge;
-  final List<String> genre;
+  final List<dynamic> genre;
   final int year;
   final String synopsis;
   final String mpaRating;

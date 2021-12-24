@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cinema_app/models/bottom_nav_bar_enums.dart';
+import 'package:cinema_app/service/web_service.dart';
 import 'package:cinema_app/views/movie_detail.dart';
 import 'package:cinema_app/widgets/genre.dart';
 import 'package:flutter/foundation.dart';
@@ -18,9 +19,11 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   late GenresEnum selectedGenre;
   String title = '';
+  WebService webService = WebService();
 
   @override
   void initState() {
+    webService.getMovies();
     selectedGenre = GenresEnum.none;
     super.initState();
   }
