@@ -24,4 +24,20 @@ class Movie {
     required this.synopsis,
     required this.trailerCode,
   });
+
+  factory Movie.fromJson(Map<String, dynamic> json) {
+    return Movie(
+      id: json['id'],
+      title: json['title'],
+      duration: json['runtime'],
+      rating: json['rating'],
+      imageMedium: json['medium_cover_image'],
+      imageLarge: json['large_cover_image'],
+      genre: json['genres'],
+      year: json['year'],
+      mpaRating: json['mpa_rating'],
+      synopsis: json['synopsis'],
+      trailerCode: json['yt_trailer_code'],
+    );
+  }
 }
