@@ -33,7 +33,7 @@ class Movie {
       rating: json['rating'],
       imageMedium: json['medium_cover_image'],
       imageLarge: json['large_cover_image'],
-      genre: json['genres'],
+      genre: json['genres'] ?? [],
       year: json['year'],
       mpaRating: json['mpa_rating'],
       synopsis: json['synopsis'],

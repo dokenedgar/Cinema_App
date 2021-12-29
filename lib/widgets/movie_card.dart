@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cinema_app/models/movie.dart';
 import 'package:cinema_app/views/movie_detail.dart';
 import 'package:flutter/material.dart';
 
 class MovieCard extends StatefulWidget {
-  const MovieCard({Key? key, required this.posterUrl}) : super(key: key);
-  final String posterUrl;
+  const MovieCard({Key? key, required this.movie}) : super(key: key);
+  final Movie movie;
 
   @override
   _MovieCardState createState() => _MovieCardState();
@@ -14,11 +15,17 @@ class _MovieCardState extends State<MovieCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 16.0),
+      padding: const EdgeInsets.only(right: 10.0),
       child: InkWell(
         onTap: () {
-          //Navigator.push(
-            //  context, MaterialPageRoute(builder: (context) => const MovieDetail()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MovieDetail(
+                movie: widget.movie,
+              ),
+            ),
+          );
         },
         child: SizedBox(
           //color: Colors.grey,
@@ -28,7 +35,7 @@ class _MovieCardState extends State<MovieCard> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CachedNetworkImage(
-                imageUrl: widget.posterUrl,
+                imageUrl: widget.movie.imageMedium,
                 filterQuality: FilterQuality.medium,
                 height: 220,
                 width: 150,
@@ -48,12 +55,12 @@ class _MovieCardState extends State<MovieCard> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 6.0),
-                child: const Text(
-                  'The Last Duel',
+                child: Text(
+                  widget.movie.title,
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
-                  style: TextStyle(fontSize: 14),
+                  style: const TextStyle(fontSize: 14),
                 ),
               ),
             ],
