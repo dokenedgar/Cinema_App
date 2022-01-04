@@ -20,7 +20,7 @@ class ShimmerHomeLoading extends StatelessWidget {
               children: <Widget>[
                 Container(
                   width: 300.0,
-                  height: 400.0,
+                  height: 330.0,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12)),

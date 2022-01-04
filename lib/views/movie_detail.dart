@@ -94,7 +94,7 @@ class _MovieDetailState extends State<MovieDetail> {
                           ),
                           placeholder: (context, url) =>
                               const ShimmerLoadingImage(
-                            duration: Duration(milliseconds: 200),
+                            duration: Duration(milliseconds: 500),
                           ),
                           errorWidget: (context, url, error) =>
                               const Icon(Icons.error),
