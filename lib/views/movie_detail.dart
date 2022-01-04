@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cinema_app/models/movie.dart';
 import 'package:cinema_app/views/buy_ticket.dart';
+import 'package:cinema_app/widgets/shimmer_loading_image.dart';
 import 'package:cinema_app/widgets/trailer_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -92,7 +93,9 @@ class _MovieDetailState extends State<MovieDetail> {
                             ),
                           ),
                           placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
+                              const ShimmerLoadingImage(
+                            duration: Duration(milliseconds: 200),
+                          ),
                           errorWidget: (context, url, error) =>
                               const Icon(Icons.error),
                         ),
