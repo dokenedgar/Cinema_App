@@ -7,9 +7,9 @@ class Genre extends StatefulWidget {
     Key? key,
     required this.title, required this.selectedGenre
   }) : super(key: key);
-    final GenresEnum title;
+    final String title;
 
-    final GenresEnum selectedGenre;
+    final String selectedGenre;
   //final VoidCallback onClick;
 
   @override
@@ -23,7 +23,7 @@ class _GenreState extends State<Genre> {
   @override
   void initState() {
     super.initState();
-    titleString = describeEnum(widget.title);
+    titleString =  widget.title;//describeEnum(widget.title);
 
 
   }
