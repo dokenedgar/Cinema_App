@@ -3,6 +3,7 @@ import 'package:cinema_app/models/bottom_nav_bar_enums.dart';
 import 'package:cinema_app/view_model/movie_list_home_screen_view_model.dart';
 import 'package:cinema_app/widgets/genre.dart';
 import 'package:cinema_app/widgets/movie_card_home_screen.dart';
+import 'package:cinema_app/widgets/shimmer_home_carousel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -184,7 +185,7 @@ class _HomeState extends State<Home> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 24.0),
-                child: mvList.movies.isEmpty ? CircularProgressIndicator() : CarouselSlider(
+                child: mvList.movies.isEmpty ? const ShimmerHomeLoading() : CarouselSlider(
                   items: List.generate(
                     mvList.movies.length,
                     (index) => MovieCardHomeScreen(movie: mvList.movies[index]),
@@ -195,7 +196,7 @@ class _HomeState extends State<Home> {
                       viewportFraction: 0.6,
                       enlargeCenterPage: true,
                       enableInfiniteScroll: false,
-                      initialPage: 0,
+                      initialPage: 1,
                       onPageChanged: (index, reason) {
                         print('index $index');
                         print('reason $reason');
