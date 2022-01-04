@@ -9,7 +9,7 @@ class TimeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: isSelected ? Colors.orangeAccent : Colors.grey.shade300,
+      color: isSelected ? Colors.deepOrange.withOpacity(0.8) : Colors.grey.shade300,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12)
       ),

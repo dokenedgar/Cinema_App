@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cinema_app/models/bottom_nav_bar_enums.dart';
+import 'package:cinema_app/models/movie.dart';
 import 'package:cinema_app/widgets/date_card.dart';
 import 'package:cinema_app/widgets/time_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,7 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class BuyTicket extends StatefulWidget {
-  const BuyTicket({Key? key}) : super(key: key);
+  const BuyTicket({Key? key, required this.movie}) : super(key: key);
+  final Movie movie;
 
   @override
   _BuyTicketState createState() => _BuyTicketState();
@@ -82,7 +84,7 @@ class _BuyTicketState extends State<BuyTicket> {
                     children: [
                       CachedNetworkImage(
                         imageUrl:
-                            'https://m.media-amazon.com/images/M/MV5BZGExZTUzYWQtYWJjZi00OTI4LTk4OGYtNTA2YzcwMmNiZTMxXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX1000_.jpg',
+                            widget.movie.imageMedium,
                         filterQuality: FilterQuality.medium,
                         height: 150,
                         width: 100,
@@ -107,10 +109,10 @@ class _BuyTicketState extends State<BuyTicket> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              const Text(
-                                'The Last Duel',
+                               Text(
+                                widget.movie.title,
                                 textAlign: TextAlign.start,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 18),
                               ),
                               const Text(
@@ -148,8 +150,8 @@ class _BuyTicketState extends State<BuyTicket> {
                     children: [
                       Expanded(
                         child: CupertinoSlidingSegmentedControl<TicketType>(
-                          backgroundColor: Colors.orangeAccent.withOpacity(0.3),
-                          thumbColor: Colors.orangeAccent,
+                          backgroundColor: Colors.grey.withOpacity(0.25),
+                          thumbColor: Colors.deepOrange.withOpacity(0.8),
                           onValueChanged: (TicketType? value) {
                             if (value != null && value == TicketType.vip) {
                               setState(() {
@@ -282,8 +284,8 @@ class _BuyTicketState extends State<BuyTicket> {
                     children: [
                       Expanded(
                         child: CupertinoSlidingSegmentedControl<bool>(
-                          backgroundColor: Colors.orangeAccent.withOpacity(0.3),
-                          thumbColor: Colors.orangeAccent,
+                          backgroundColor: Colors.grey.withOpacity(0.25),
+                          thumbColor: Colors.deepOrange.withOpacity(0.8),
                           onValueChanged: (bool? value) {
                             if (value != null && value) {
                               setState(() {

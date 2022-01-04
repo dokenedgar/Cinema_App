@@ -16,13 +16,13 @@ class _DateCardState extends State<DateCard> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        // gradient: LinearGradient(
-        //   colors: [Colors.black87, widget.isSelected ? Colors.orange: Colors.grey],
-        //   begin: FractionalOffset.bottomLeft,
-        //   end: FractionalOffset.topRight,
-        //
-        // ),
-          color: widget.isSelected ? Colors.orangeAccent: Colors.grey.shade400,
+        gradient: LinearGradient(
+          colors: [Colors.black.withOpacity(0.7), widget.isSelected ? Colors.deepOrange: Colors.grey.withOpacity(0.4)],
+          begin: FractionalOffset.bottomLeft,
+          end: FractionalOffset.topRight,
+
+        ),
+          //color: widget.isSelected ? Colors.orangeAccent: Colors.grey.shade400,
            borderRadius: BorderRadius.circular(12)),
       height: widget.isSelected ? 100 : 90,
       width: widget.isSelected ? 80 : 70,
@@ -62,12 +62,14 @@ class _DateCardState extends State<DateCard> {
                   padding: const EdgeInsets.only(top: 14.0, bottom: 4),
                   child: Text(
                     widget.day,
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16,
+                      color: Colors.white,),
                   ),
                 ),
                 Text(
                   widget.date,
                   style: const TextStyle(
+                    color: Colors.white,
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
                   ),

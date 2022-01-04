@@ -196,9 +196,13 @@ class _MovieDetailState extends State<MovieDetail> {
               child: CupertinoButton.filled(
                 onPressed: () async {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const BuyTicket()));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BuyTicket(
+                        movie: widget.movie,
+                      ),
+                    ),
+                  );
                   // await CachedNetworkImage.evictFromCache(
                   //     'https://m.media-amazon.com/images/M/MV5BZGExZTUzYWQtYWJjZi00OTI4LTk4OGYtNTA2YzcwMmNiZTMxXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX1000_.jpg');
                   //await CachedNetworkImage.evictFromCache('https://m.media-amazon.com/images/M/MV5BMDUzNWJhZWQtYzU3Zi00M2NjLThjZjEtMTRmMjRmNzBmMWI2XkEyXkFqcGdeQXVyODIyOTEyMzY@._V1_SX300.jpg');
