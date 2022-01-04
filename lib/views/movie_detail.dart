@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cinema_app/models/movie.dart';
 import 'package:cinema_app/views/buy_ticket.dart';
-import 'package:cinema_app/views/test_render_box.dart';
+import 'package:cinema_app/widgets/trailer_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -35,6 +35,11 @@ String dateToString(int date) {
 }
 
 class _MovieDetailState extends State<MovieDetail> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,7 +132,9 @@ class _MovieDetailState extends State<MovieDetail> {
                               allowHalfRating: true,
                               ignoreGestures: true,
                               updateOnDrag: false,
-                              initialRating: num.parse(widget.movie.rating.toString()).toDouble(),
+                              initialRating:
+                                  num.parse(widget.movie.rating.toString())
+                                      .toDouble(),
                               itemSize: 24,
                               itemBuilder: (context, _) {
                                 return const Icon(
@@ -167,12 +174,11 @@ class _MovieDetailState extends State<MovieDetail> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8.0, left: 24, right: 24),
+                      padding:
+                          const EdgeInsets.only(top: 8.0, left: 24, right: 24),
                       child: Align(
                         alignment: Alignment.topLeft,
-                        child: Text(
-                          widget.movie.synopsis
-                        ),
+                        child: Text(widget.movie.synopsis),
                       ),
                     ),
                     const SizedBox(
@@ -199,27 +205,50 @@ class _MovieDetailState extends State<MovieDetail> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: Visibility(
+                  visible: widget.movie.trailerCode.trim().isNotEmpty,
+                  child: FloatingActionButton(
+                    //mini: true,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => TrailerPlayer(
+                            movie: widget.movie,
+                          ),
+                        ),
+                      );
+                    },
+                    child: const Icon(Icons.play_arrow),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
       // show if there's a trailer
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: Visibility(
-        visible: false,
-        child: FloatingActionButton(
-          mini: true,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const TestRenderBox(),
-              ),
-            );
-          },
-          child: const Icon(Icons.play_arrow),
-        ),
-      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      // floatingActionButton: Visibility(
+      //   visible: widget.movie.trailerCode.trim().isNotEmpty,
+      //   child: FloatingActionButton(
+      //     //mini: true,
+      //     onPressed: () {
+      //       Navigator.push(
+      //         context,
+      //         MaterialPageRoute(
+      //           builder: (context) => const TestRenderBox(),
+      //         ),
+      //       );
+      //     },
+      //     child: const Icon(Icons.play_arrow),
+      //   ),
+      // ),
     );
   }
 }
