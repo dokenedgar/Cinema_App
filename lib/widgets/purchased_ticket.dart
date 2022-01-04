@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cinema_app/models/movie.dart';
 import 'package:cinema_app/views/movie_detail.dart';
+import 'package:cinema_app/widgets/shimmer_loading_image.dart';
 import 'package:cinema_app/widgets/ticket_clip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -57,6 +58,10 @@ class _PurchasedTicketState extends State<PurchasedTicket> {
                       ),
                     );
                   },
+                  placeholder: (context, url) => const ShimmerLoadingImage(
+                    duration: Duration(milliseconds: 500),
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
                 Expanded(
                   child: Padding(
