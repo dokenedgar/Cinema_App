@@ -6,6 +6,7 @@ import 'package:cinema_app/widgets/trailer_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:sizer/sizer.dart';
 
 class MovieDetail extends StatefulWidget {
   const MovieDetail({Key? key, required this.movie}) : super(key: key);
@@ -49,11 +50,13 @@ class _MovieDetailState extends State<MovieDetail> {
           children: [
             SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.only(bottom: kToolbarHeight),
+                padding: EdgeInsets.only(bottom: kToolbarHeight + 1.w),
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 6.w,
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -61,11 +64,11 @@ class _MovieDetailState extends State<MovieDetail> {
                             onPressed: () => Navigator.pop(context),
                             icon: const Icon(Icons.arrow_back_ios),
                           ),
-                          const Text(
+                          Text(
                             'Detail',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                              fontSize: 12.sp,
                             ),
                           ),
                           IconButton(
@@ -76,10 +79,10 @@ class _MovieDetailState extends State<MovieDetail> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 4.w),
                       child: SizedBox(
-                        height: 450,
-                        width: 350,
+                        height: 50.h,
+                        width: 84.w,
                         child: CachedNetworkImage(
                           filterQuality: FilterQuality.medium,
                           imageUrl: widget.movie.imageLarge,
@@ -102,13 +105,13 @@ class _MovieDetailState extends State<MovieDetail> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
+                      padding: EdgeInsets.only(left: 2.w, right: 2.w, top: 2.w),
                       child: Text(
                         widget.movie.title,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                          fontSize: 14.sp,
                         ),
                       ),
                     ),
@@ -116,13 +119,14 @@ class _MovieDetailState extends State<MovieDetail> {
                       alignment: WrapAlignment.center,
                       spacing: 4,
                       children: List.generate(
-                          widget.movie.genre.length,
-                          (index) => Chip(
-                                label: Text(widget.movie.genre[index]),
-                              )).toList(),
+                        widget.movie.genre.length,
+                        (index) => Chip(
+                          label: Text(widget.movie.genre[index]),
+                        ),
+                      ).toList(),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      padding: EdgeInsets.symmetric(horizontal: 4.w),
                       child: IntrinsicHeight(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -138,16 +142,14 @@ class _MovieDetailState extends State<MovieDetail> {
                               initialRating:
                                   num.parse(widget.movie.rating.toString())
                                       .toDouble(),
-                              itemSize: 24,
+                              itemSize: 6.w,
                               itemBuilder: (context, _) {
                                 return const Icon(
                                   Icons.star,
                                   color: Colors.amber,
                                 );
                               },
-                              onRatingUpdate: (value) {
-                                print('update.. $value');
-                              },
+                              onRatingUpdate: (value) {},
                             ),
                             const VerticalDivider(
                               color: Colors.black,
@@ -163,30 +165,28 @@ class _MovieDetailState extends State<MovieDetail> {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 16.0, left: 24),
+                     Padding(
+                      padding: EdgeInsets.only(top: 3.w, left: 6.w),
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: Text(
                           'Synopsis',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                            fontSize: 13.5.sp,
                           ),
                         ),
                       ),
                     ),
                     Padding(
                       padding:
-                          const EdgeInsets.only(top: 8.0, left: 24, right: 24),
+                           EdgeInsets.only(top: 2.w, left: 6.w, right: 6.w),
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: Text(widget.movie.synopsis),
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+
                   ],
                 ),
               ),
