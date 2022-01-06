@@ -68,7 +68,6 @@ class _HomeState extends State<Home> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            //mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
                 padding: EdgeInsets.only(top: 1.w, left: 4.w, right: 4.w),
@@ -77,9 +76,9 @@ class _HomeState extends State<Home> {
                     child: Icon(Icons.person),
                   ),
                   title: Text(
-                    'Hey, Kim Jong Un',
+                    'Hey Chandler,',
                   ),
-                  subtitle: Text('Today, 13 December'),
+                  subtitle: Text('06 January'),
                   trailing: Icon(
                     Icons.notifications,
                   ),

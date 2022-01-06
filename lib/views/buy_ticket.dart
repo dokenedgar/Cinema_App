@@ -316,7 +316,7 @@ class _BuyTicketState extends State<BuyTicket> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 2.w),
+                  padding: EdgeInsets.only(top: 4.w),
                   child: Visibility(
                     visible: additionalPopcorn,
                     child: Row(
