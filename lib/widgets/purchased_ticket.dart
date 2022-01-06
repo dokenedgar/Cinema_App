@@ -5,6 +5,7 @@ import 'package:cinema_app/widgets/shimmer_loading_image.dart';
 import 'package:cinema_app/widgets/ticket_clip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:sizer/sizer.dart';
 
 class PurchasedTicket extends StatefulWidget {
   const PurchasedTicket({Key? key, required this.movie}) : super(key: key);
@@ -32,7 +33,7 @@ class _PurchasedTicketState extends State<PurchasedTicket> {
         child: ClipPath(
           clipper: TicketClip(),
           child: Container(
-            height: 150,
+            height: 35.w,
             decoration: BoxDecoration(
                 color: Colors.grey.shade300,
                 border: Border.all(color: Colors.white),
@@ -43,8 +44,8 @@ class _PurchasedTicketState extends State<PurchasedTicket> {
                 CachedNetworkImage(
                   imageUrl: widget.movie.imageMedium,
                   filterQuality: FilterQuality.medium,
-                  height: 150,
-                  width: 100,
+                  height: 35.w,
+                  width: 25.w,
                   fit: BoxFit.cover,
                   imageBuilder: (context, imageProvider) {
                     return Container(
@@ -53,7 +54,7 @@ class _PurchasedTicketState extends State<PurchasedTicket> {
                         borderRadius: BorderRadius.circular(12),
                         image: DecorationImage(
                           image: imageProvider,
-                          fit: BoxFit.contain,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     );
@@ -65,21 +66,21 @@ class _PurchasedTicketState extends State<PurchasedTicket> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 34.0),
+                    padding: EdgeInsets.only(left: 8.w),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
+                          padding: EdgeInsets.only(top: 2.w),
                           child: Text(
                             widget.movie.title,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.start,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 18,
+                              fontSize: 13.sp,
                             ),
                           ),
                         ),
@@ -89,7 +90,9 @@ class _PurchasedTicketState extends State<PurchasedTicket> {
                           allowHalfRating: true,
                           ignoreGestures: true,
                           updateOnDrag: false,
-                          initialRating: num.parse(widget.movie.rating.toString()).toDouble(),
+                          initialRating:
+                              num.parse(widget.movie.rating.toString())
+                                  .toDouble(),
                           itemSize: 20,
                           itemBuilder: (context, _) {
                             return const Icon(
@@ -97,9 +100,7 @@ class _PurchasedTicketState extends State<PurchasedTicket> {
                               color: Colors.amber,
                             );
                           },
-                          onRatingUpdate: (value) {
-                            print('update.. $value');
-                          },
+                          onRatingUpdate: (value) {},
                         ),
                       ],
                     ),
