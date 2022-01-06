@@ -19,7 +19,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   late String selectedGenre;
-  String title = '';
   MoviesList originalMoviesList = MoviesList();
   List<Movie> mvList = <Movie>[];
   final CarouselController _carouselController = CarouselController();
@@ -71,7 +70,7 @@ class _HomeState extends State<Home> {
           child: Column(
             //mainAxisAlignment: MainAxisAlignment.start,
             children: [
-               Padding(
+              Padding(
                 padding: EdgeInsets.only(top: 1.w, left: 4.w, right: 4.w),
                 child: const ListTile(
                   leading: CircleAvatar(
@@ -87,8 +86,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
               Padding(
-                padding:
-                     EdgeInsets.only(left: 8.w, right: 8.w, top: 2.w),
+                padding: EdgeInsets.only(left: 8.w, right: 8.w, top: 2.w),
                 child: TextFormField(
                   decoration: InputDecoration(
                     label: const Text('Movie search'),
@@ -114,11 +112,12 @@ class _HomeState extends State<Home> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 8.w, top: 6.w, bottom: 2.w),
-                child:  Align(
+                child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Text(
                     'Categories',
-                    style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.start,
                   ),
                 ),
@@ -148,7 +147,7 @@ class _HomeState extends State<Home> {
                           )),
                 ),
               ),
-               Padding(
+              Padding(
                 padding: EdgeInsets.only(
                   left: 8.w,
                   top: 8.w,
@@ -157,13 +156,14 @@ class _HomeState extends State<Home> {
                   alignment: Alignment.bottomLeft,
                   child: Text(
                     'Popular',
-                    style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.start,
                   ),
                 ),
               ),
               Padding(
-                padding:  EdgeInsets.only(top: 5.w),
+                padding: EdgeInsets.only(top: 5.w),
                 child: originalMoviesList.movies.isEmpty
                     ? const ShimmerHomeLoading()
                     : CarouselSlider(
@@ -173,19 +173,13 @@ class _HomeState extends State<Home> {
                           (index) => MovieCardHomeScreen(movie: mvList[index]),
                         ),
                         options: CarouselOptions(
-                            //height: 300,
-                            aspectRatio: 0.92,
-                            viewportFraction: 0.6,
-                            enlargeCenterPage: true,
-                            enableInfiniteScroll: false,
-                            initialPage: 1,
-                            onPageChanged: (index, reason) {
-                              print('index $index');
-                              print('reason $reason');
-                              setState(() {
-                                title = index.toString();
-                              });
-                            }),
+                          aspectRatio: 0.92,
+                          viewportFraction: 0.6,
+                          enlargeCenterPage: true,
+                          enableInfiniteScroll: false,
+                          initialPage: 1,
+                          //onPageChanged: (index, reason) {},
+                        ),
                       ),
               ),
             ],
