@@ -43,7 +43,7 @@ class _ShowTimeState extends State<ShowTime> {
                       const Padding(
                         padding: EdgeInsets.only(bottom: 8.0, top: 16),
                         child: Text(
-                          'December 20',
+                          'January 5',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
@@ -71,7 +71,7 @@ class _ShowTimeState extends State<ShowTime> {
                       const Padding(
                         padding: const EdgeInsets.only(bottom: 8.0, top: 16),
                         child: Text(
-                          'December 21',
+                          'January 6',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
@@ -99,7 +99,7 @@ class _ShowTimeState extends State<ShowTime> {
                       const Padding(
                         padding: const EdgeInsets.only(bottom: 8.0, top: 16),
                         child: Text(
-                          'December 22',
+                          'January 7',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
@@ -127,7 +127,7 @@ class _ShowTimeState extends State<ShowTime> {
                       const Padding(
                         padding: const EdgeInsets.only(bottom: 8.0, top: 16),
                         child: Text(
-                          'December 23',
+                          'January 8',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
@@ -155,7 +155,7 @@ class _ShowTimeState extends State<ShowTime> {
                       const Padding(
                         padding: const EdgeInsets.only(bottom: 8.0, top: 16),
                         child: Text(
-                          'December 24',
+                          'January 9',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),

@@ -1,5 +1,7 @@
 import 'package:cinema_app/models/movie.dart';
 import 'package:cinema_app/view_model/explode_youtube_link.dart';
+import 'package:cinema_app/widgets/shimmer_genres_loading.dart';
+import 'package:cinema_app/widgets/shimmer_loading_image.dart';
 import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/services.dart';
@@ -64,13 +66,6 @@ class _TrailerPlayerState extends State<TrailerPlayer> {
                     onPressed: () => Navigator.pop(context),
                     icon: const Icon(Icons.arrow_back_ios),
                   ),
-                  const Text(
-                    'Trailer',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
                   IconButton(
                     onPressed: () => Navigator.pop(context),
                     icon: const Icon(Icons.share_outlined),
@@ -80,13 +75,15 @@ class _TrailerPlayerState extends State<TrailerPlayer> {
             ),
             explodeYoutubeLink.youtubeLink != null
                 ? Expanded(
-                  child: Chewie(
+                    child: Chewie(
                       controller: _chewieController,
                     ),
-                )
-                : const Align(
-              alignment: Alignment.bottomCenter,
-                    child: CircularProgressIndicator(),
+                  )
+                : const SizedBox(
+                    height: 500,
+                    child: ShimmerLoadingImage(
+                      duration: Duration(milliseconds: 500),
+                    ),
                   ),
           ],
         ),
