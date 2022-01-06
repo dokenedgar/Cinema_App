@@ -1,6 +1,7 @@
 import 'package:cinema_app/view_model/movie_list_home_screen_view_model.dart';
 import 'package:cinema_app/widgets/movie_card.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class ShowTime extends StatefulWidget {
   const ShowTime({Key? key}) : super(key: key);
@@ -28,10 +29,10 @@ class _ShowTimeState extends State<ShowTime> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(
-              bottom: kToolbarHeight,
-              left: 16,
-              right: 16,
+            padding:  EdgeInsets.only(
+              bottom: 5.w,
+              left: 4.w,
+              right: 4.w,
             ),
             child: moviesList.movies.isEmpty
                 ? const Center(
@@ -40,12 +41,12 @@ class _ShowTimeState extends State<ShowTime> {
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(bottom: 8.0, top: 16),
+                       Padding(
+                        padding: EdgeInsets.only(bottom: 2.w, top: 4.w),
                         child: Text(
                           'January 5',
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: 13.sp, fontWeight: FontWeight.bold),
                         ),
                       ),
                       SingleChildScrollView(
@@ -68,12 +69,12 @@ class _ShowTimeState extends State<ShowTime> {
                           ],
                         ),
                       ),
-                      const Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0, top: 16),
+                       Padding(
+                        padding:  EdgeInsets.only(bottom: 2.w, top: 4.w),
                         child: Text(
                           'January 6',
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: 13.sp, fontWeight: FontWeight.bold),
                         ),
                       ),
                       SingleChildScrollView(
@@ -96,12 +97,12 @@ class _ShowTimeState extends State<ShowTime> {
                           ],
                         ),
                       ),
-                      const Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0, top: 16),
+                       Padding(
+                        padding: EdgeInsets.only(bottom: 2.w, top: 4.w),
                         child: Text(
                           'January 7',
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: 13.sp, fontWeight: FontWeight.bold),
                         ),
                       ),
                       SingleChildScrollView(
@@ -124,12 +125,12 @@ class _ShowTimeState extends State<ShowTime> {
                           ],
                         ),
                       ),
-                      const Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0, top: 16),
+                       Padding(
+                        padding:  EdgeInsets.only(bottom: 2.w, top: 4.w),
                         child: Text(
                           'January 8',
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: 13.sp, fontWeight: FontWeight.bold),
                         ),
                       ),
                       SingleChildScrollView(
@@ -152,12 +153,12 @@ class _ShowTimeState extends State<ShowTime> {
                           ],
                         ),
                       ),
-                      const Padding(
-                        padding: const EdgeInsets.only(bottom: 8.0, top: 16),
+                       Padding(
+                        padding:  EdgeInsets.only(bottom: 2.w, top: 4.w),
                         child: Text(
                           'January 9',
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: 13.sp, fontWeight: FontWeight.bold),
                         ),
                       ),
                       SingleChildScrollView(
