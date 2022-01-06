@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sizer/sizer.dart';
 
 class ShimmerHomeLoading extends StatelessWidget {
   const ShimmerHomeLoading({Key? key}) : super(key: key);
@@ -19,26 +20,33 @@ class ShimmerHomeLoading extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  width: 300.0,
-                  height: 330.0,
+                  width: 75.0.w,
+                  height: 83.w,
                   decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12)),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 4.0),
                   child: Container(
-                    width: 180,
-                    height: 8.0,
-                    color: Colors.white,
+                    width: 45.w,
+                    height: 2.w,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 4.0),
                   child: Container(
-                    width: 100.0,
-                    height: 8.0,
-                    color: Colors.white,
+                    width: 25.w,
+                    height: 2.w,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
                 ),
                 RatingBar.builder(

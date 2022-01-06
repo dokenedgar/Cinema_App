@@ -43,6 +43,7 @@ dependencies:
   video_player: ^2.2.10
   youtube_explode_dart: ^1.10.8
   shimmer: ^2.0.0
+  sizer: ^2.0.15
 
   #new_gradient_app_bar: ^0.2.0
 

@@ -8,6 +8,7 @@ import 'package:cinema_app/widgets/shimmer_home_carousel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:sizer/sizer.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -70,9 +71,9 @@ class _HomeState extends State<Home> {
           child: Column(
             //mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 2.0, left: 16, right: 16),
-                child: ListTile(
+               Padding(
+                padding: EdgeInsets.only(top: 1.w, left: 4.w, right: 4.w),
+                child: const ListTile(
                   leading: CircleAvatar(
                     child: Icon(Icons.person),
                   ),
@@ -87,7 +88,7 @@ class _HomeState extends State<Home> {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.only(left: 32.0, right: 32.0, top: 16),
+                     EdgeInsets.only(left: 8.w, right: 8.w, top: 2.w),
                 child: TextFormField(
                   decoration: InputDecoration(
                     label: const Text('Movie search'),
@@ -111,21 +112,21 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 32.0, top: 24, bottom: 8),
-                child: Align(
+              Padding(
+                padding: EdgeInsets.only(left: 8.w, top: 6.w, bottom: 2.w),
+                child:  Align(
                   alignment: Alignment.bottomLeft,
                   child: Text(
                     'Categories',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.start,
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  left: 32.0,
-                  top: 8,
+                padding: EdgeInsets.only(
+                  left: 8.w,
+                  top: 2.w,
                 ),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -147,22 +148,22 @@ class _HomeState extends State<Home> {
                           )),
                 ),
               ),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.only(
-                  left: 32.0,
-                  top: 24,
+                  left: 8.w,
+                  top: 8.w,
                 ),
                 child: Align(
                   alignment: Alignment.bottomLeft,
                   child: Text(
                     'Popular',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.start,
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 24.0),
+                padding:  EdgeInsets.only(top: 5.w),
                 child: originalMoviesList.movies.isEmpty
                     ? const ShimmerHomeLoading()
                     : CarouselSlider(
