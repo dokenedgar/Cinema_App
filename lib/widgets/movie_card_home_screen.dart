@@ -4,6 +4,7 @@ import 'package:cinema_app/views/movie_detail.dart';
 import 'package:cinema_app/widgets/shimmer_loading_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:sizer/sizer.dart';
 
 class MovieCardHomeScreen extends StatelessWidget {
   const MovieCardHomeScreen({Key? key, required this.movie}) : super(key: key);
@@ -32,8 +33,6 @@ class MovieCardHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      // should be a movie model / object?
-
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
@@ -47,8 +46,6 @@ class MovieCardHomeScreen extends StatelessWidget {
         children: [
           Expanded(
             child: SizedBox(
-              //height: 200,
-              //width: 300,
               child: CachedNetworkImage(
                 filterQuality: FilterQuality.medium,
                 imageUrl: movie.imageMedium,
@@ -69,7 +66,7 @@ class MovieCardHomeScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(2.w),
             child: Text(
               movie.title,
               textAlign: TextAlign.center,
