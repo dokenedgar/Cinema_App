@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class TimeCard extends StatelessWidget {
   const TimeCard({Key? key, required this.time, required this.isSelected})
@@ -14,8 +15,8 @@ class TimeCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12)
       ),
       child: SizedBox(
-        height: 40,
-        width: 100,
+        height: 9.w,
+        width: 22.w,
         child: Center(child: Text(time)),
       ),
     );

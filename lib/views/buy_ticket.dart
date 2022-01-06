@@ -8,6 +8,7 @@ import 'package:cinema_app/widgets/time_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:sizer/sizer.dart';
 
 class BuyTicket extends StatefulWidget {
   const BuyTicket({Key? key, required this.movie}) : super(key: key);
@@ -49,10 +50,10 @@ class _BuyTicketState extends State<BuyTicket> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(
-              bottom: kToolbarHeight,
-              left: 24,
-              right: 24,
+            padding: EdgeInsets.only(
+              bottom: 2.w,
+              left: 6.w,
+              right: 6.w,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,11 +65,11 @@ class _BuyTicketState extends State<BuyTicket> {
                       onPressed: () => Navigator.pop(context),
                       icon: const Icon(Icons.arrow_back_ios),
                     ),
-                    const Text(
+                    Text(
                       'Buy Ticket',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                        fontSize: 13.sp,
                       ),
                     ),
                     IconButton(
@@ -78,16 +79,15 @@ class _BuyTicketState extends State<BuyTicket> {
                   ],
                 ),
                 SizedBox(
-                  height: 150,
+                  height: 35.w,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CachedNetworkImage(
-                        imageUrl:
-                            widget.movie.imageMedium,
+                        imageUrl: widget.movie.imageMedium,
                         filterQuality: FilterQuality.medium,
-                        height: 150,
-                        width: 100,
+                        height: 35.w,
+                        width: 25.w,
                         fit: BoxFit.cover,
                         imageBuilder: (context, imageProvider) {
                           return Container(
@@ -96,7 +96,7 @@ class _BuyTicketState extends State<BuyTicket> {
                               borderRadius: BorderRadius.circular(12),
                               image: DecorationImage(
                                 image: imageProvider,
-                                fit: BoxFit.contain,
+                                fit: BoxFit.cover,
                               ),
                             ),
                           );
@@ -104,27 +104,29 @@ class _BuyTicketState extends State<BuyTicket> {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 34.0),
+                          padding: EdgeInsets.only(left: 8.w),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                               Text(
+                              Text(
                                 widget.movie.title,
                                 textAlign: TextAlign.start,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 18),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13.sp,
+                                ),
                               ),
                               const Text(
                                 '02h 18m',
                               ),
                               Row(
-                                children: const [
+                                children: [
                                   Icon(
                                     Icons.location_pin,
-                                    size: 12,
+                                    size: 12.sp,
                                   ),
-                                  Text('Fasnet Cinema')
+                                  const Text('Fasnet Cinema')
                                 ],
                               ),
                             ],
@@ -134,18 +136,18 @@ class _BuyTicketState extends State<BuyTicket> {
                     ],
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 38.0),
+                Padding(
+                  padding: EdgeInsets.only(top: 8.w),
                   child: Text(
                     'Ticket',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 13.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 16.0),
+                  padding: EdgeInsets.only(top: 4.w),
                   child: Row(
                     children: [
                       Expanded(
@@ -177,7 +179,7 @@ class _BuyTicketState extends State<BuyTicket> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 16.0),
+                  padding: EdgeInsets.only(top: 4.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -190,9 +192,9 @@ class _BuyTicketState extends State<BuyTicket> {
                           }
                         },
                         child: Card(
-                          child: const Icon(
+                          child: Icon(
                             Icons.remove,
-                            size: 34,
+                            size: 8.w,
                           ),
                           color: numTickets == 1
                               ? Colors.grey.shade100
@@ -201,8 +203,10 @@ class _BuyTicketState extends State<BuyTicket> {
                       ),
                       Text(
                         numTickets.toString(),
-                        style: const TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       InkWell(
                         onTap: () {
@@ -211,9 +215,9 @@ class _BuyTicketState extends State<BuyTicket> {
                           });
                         },
                         child: Card(
-                          child: const Icon(
+                          child: Icon(
                             Icons.add,
-                            size: 34,
+                            size: 8.w,
                           ),
                           color: Colors.grey.shade300,
                         ),
@@ -222,7 +226,7 @@ class _BuyTicketState extends State<BuyTicket> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 12.0),
+                  padding: EdgeInsets.only(top: 3.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -233,13 +237,17 @@ class _BuyTicketState extends State<BuyTicket> {
                       )),
                       Text(
                         '  ${format.currencySymbol}',
-                        style: const TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       Text(
                         '${format.format(basePrice * numTickets).replaceFirst(format.currencySymbol, ' ').replaceFirst('.00', '')}  ',
-                        style: const TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       Expanded(
                           child: Divider(
@@ -261,12 +269,12 @@ class _BuyTicketState extends State<BuyTicket> {
                     ),
                   ],
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 28.0),
+                Padding(
+                  padding: EdgeInsets.only(top: 7.w),
                   child: Text(
                     'Popcorn',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 13.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -279,7 +287,7 @@ class _BuyTicketState extends State<BuyTicket> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
+                  padding: EdgeInsets.only(top: 2.w),
                   child: Row(
                     children: [
                       Expanded(
@@ -308,7 +316,7 @@ class _BuyTicketState extends State<BuyTicket> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
+                  padding: EdgeInsets.only(top: 2.w),
                   child: Visibility(
                     visible: additionalPopcorn,
                     child: Row(
@@ -321,13 +329,13 @@ class _BuyTicketState extends State<BuyTicket> {
                         )),
                         Text(
                           '  ${format.currencySymbol}',
-                          style: const TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 17.sp, fontWeight: FontWeight.bold),
                         ),
-                        const Text(
+                        Text(
                           '  800  ',
                           style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.bold),
+                              fontSize: 17.sp, fontWeight: FontWeight.bold),
                         ),
                         Expanded(
                             child: Divider(
@@ -338,12 +346,12 @@ class _BuyTicketState extends State<BuyTicket> {
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 28.0),
+                Padding(
+                  padding: EdgeInsets.only(top: 6.w),
                   child: Text(
                     'Select Time',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 13.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -369,20 +377,20 @@ class _BuyTicketState extends State<BuyTicket> {
                         ),
                       ),
                     )),
-                const Padding(
-                  padding: EdgeInsets.only(top: 28.0),
+                Padding(
+                  padding: EdgeInsets.only(top: 6.w),
                   child: Text(
                     'Select Date',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 13.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 28.0),
+                  padding: EdgeInsets.only(top: 7.w),
                   child: SizedBox(
-                    height: 150,
+                    height: 35.w,
                     child: PageView.builder(
                       physics: const CustomPageViewScrollPhysics(),
                       itemCount: 5,
@@ -392,33 +400,24 @@ class _BuyTicketState extends State<BuyTicket> {
                         return Stack(
                           children: [
                             if (dayIndex == index)
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: DateCard(
-                                  day: days[index],
-                                  date: (index + 10).toString(),
-                                  isSelected: true,
-                                ),
+                              DateCard(
+                                day: days[index],
+                                date: (index + 10).toString(),
+                                isSelected: true,
                               ),
                             if (dayIndex != index)
                               Positioned(
-                                bottom: 20,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0),
-                                  child: InkWell(
-                                    onTap: () => pageController.animateToPage(
-                                      index,
-                                      duration:
-                                          const Duration(milliseconds: 500),
-                                      curve: Curves.fastLinearToSlowEaseIn,
-                                    ),
-                                    child: DateCard(
-                                      date: (index + 10).toString(),
-                                      day: days[index],
-                                      isSelected: false,
-                                    ),
+                                bottom: 4.w,
+                                child: InkWell(
+                                  onTap: () => pageController.animateToPage(
+                                    index,
+                                    duration: const Duration(milliseconds: 500),
+                                    curve: Curves.fastLinearToSlowEaseIn,
+                                  ),
+                                  child: DateCard(
+                                    date: (index + 10).toString(),
+                                    day: days[index],
+                                    isSelected: false,
                                   ),
                                 ),
                               ),
@@ -433,21 +432,20 @@ class _BuyTicketState extends State<BuyTicket> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: kToolbarHeight,
-                  child: CupertinoButton(
-                    color: Colors.black,
-                    onPressed: () async {
-                      if(selectedTime == null) return;
-                      int total = basePrice * numTickets;
-                      bool showMainDialog = true;
-                      total += 100;
-                      if (additionalPopcorn) total += 800;
-                      showDialog(
+                Padding(
+                  padding: EdgeInsets.only(top: 5.w),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: kToolbarHeight,
+                    child: CupertinoButton(
+                      color: Colors.black,
+                      onPressed: () async {
+                        if (selectedTime == null) return;
+                        int total = basePrice * numTickets;
+                        bool showMainDialog = true;
+                        total += 100;
+                        if (additionalPopcorn) total += 800;
+                        showDialog(
                           context: context,
                           builder: (context) {
                             return StatefulBuilder(
@@ -457,7 +455,8 @@ class _BuyTicketState extends State<BuyTicket> {
                                   child: CupertinoAlertDialog(
                                     title: const Text(
                                       'Confirm Order',
-                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     content: Column(
                                       children: [
@@ -466,17 +465,19 @@ class _BuyTicketState extends State<BuyTicket> {
                                               vertical: 8.0),
                                           child: Row(
                                             children: [
-                                             const Text(
+                                              const Text(
                                                 'Total:',
-                                                style:  TextStyle(
+                                                style: TextStyle(
                                                     fontSize: 24,
-                                                    fontWeight: FontWeight.normal),
+                                                    fontWeight:
+                                                        FontWeight.normal),
                                               ),
                                               Text(
                                                 '  ${format.format(total)}',
                                                 style: const TextStyle(
                                                     fontSize: 24,
-                                                    fontWeight: FontWeight.normal),
+                                                    fontWeight:
+                                                        FontWeight.normal),
                                               ),
                                             ],
                                           ),
@@ -495,72 +496,98 @@ class _BuyTicketState extends State<BuyTicket> {
                                               vertical: 8.0),
                                           child: Material(
                                             child: InkWell(
-                                              onTap: () async{
+                                              onTap: () async {
                                                 setState(() {
                                                   showMainDialog = false;
                                                 });
-                                                var res = await showCupertinoDialog(
-                                                    context: context,
-                                                    barrierDismissible: true,
-                                                    builder: (context) {
-                                                      return CupertinoAlertDialog(
-                                                        title: const Material(
-                                                          child: Text('Enter Coupon'),
-                                                          color: Colors.transparent,
-                                                        ),
-                                                        content: Material(
-                                                          color: Colors.transparent,
-                                                          child: TextFormField(
-                                                            decoration:
-                                                                InputDecoration(
-                                                              hintText:
-                                                                  'Enter coupon code',
-                                                                  enabledBorder: OutlineInputBorder(
-                                                                    borderRadius: BorderRadius.circular(16),
-                                                                    borderSide:
-                                                                    const BorderSide(width: 0.5, color: Colors.grey),
-                                                                  ),
-                                                                  focusedBorder: OutlineInputBorder(
-                                                                    borderRadius: BorderRadius.circular(16),
-                                                                    borderSide:
-                                                                    const BorderSide(width: 1, color: Colors.grey),
-                                                                  ),
+                                                var res =
+                                                    await showCupertinoDialog(
+                                                  context: context,
+                                                  barrierDismissible: true,
+                                                  builder: (context) {
+                                                    return CupertinoAlertDialog(
+                                                      title: const Material(
+                                                        child: Text(
+                                                            'Enter Coupon'),
+                                                        color:
+                                                            Colors.transparent,
+                                                      ),
+                                                      content: Material(
+                                                        color:
+                                                            Colors.transparent,
+                                                        child: TextFormField(
+                                                          decoration:
+                                                              InputDecoration(
+                                                            hintText:
+                                                                'Enter coupon code',
+                                                            enabledBorder:
+                                                                OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          16),
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                      width:
+                                                                          0.5,
+                                                                      color: Colors
+                                                                          .grey),
+                                                            ),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          16),
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                      width: 1,
+                                                                      color: Colors
+                                                                          .grey),
                                                             ),
                                                           ),
                                                         ),
-                                                        actions: [
-                                                          CupertinoButton(
-                                                            child: const Text('Cancel'),
-                                                            onPressed: () {
-                                                              Navigator.pop(context);
-                                                              setState(() {
-                                                                showMainDialog = true;
-                                                              });
-                                                            },
+                                                      ),
+                                                      actions: [
+                                                        CupertinoButton(
+                                                          child: const Text(
+                                                              'Cancel'),
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                            setState(() {
+                                                              showMainDialog =
+                                                                  true;
+                                                            });
+                                                          },
+                                                        ),
+                                                        CupertinoButton(
+                                                          child: const Text(
+                                                            'Apply',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .blue),
                                                           ),
-                                                          CupertinoButton(
-                                                            child: const Text(
-                                                              'Apply',
-                                                              style: TextStyle(
-                                                                  color: Colors.blue),
-                                                            ),
-                                                            onPressed: () {
-                                                              setState(() {
-                                                                total -= 1000;
-                                                                showMainDialog = true;
-                                                              });
-                                                              Navigator.pop(context, total);
-                                                            },
-                                                          ),
-                                                        ],
-                                                      );
-                                                    });
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              total -= 1000;
+                                                              showMainDialog =
+                                                                  true;
+                                                            });
+                                                            Navigator.pop(
+                                                                context, total);
+                                                          },
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
                                               },
                                               child: const Text(
                                                 'Have a Coupon?',
                                                 style: TextStyle(
-                                                    decoration:
-                                                        TextDecoration.underline),
+                                                    decoration: TextDecoration
+                                                        .underline),
                                               ),
                                             ),
                                             color: Colors.transparent,
@@ -578,24 +605,24 @@ class _BuyTicketState extends State<BuyTicket> {
                                       CupertinoButton(
                                         child: const Text(
                                           'Proceed',
-                                          style: TextStyle(
-                                              color: Colors.blue),
+                                          style: TextStyle(color: Colors.blue),
                                         ),
                                         onPressed: () {
-
                                           Navigator.pop(context, total);
                                         },
                                       ),
                                     ],
                                   ),
                                 );
-                              }
+                              },
                             );
-                          });
-                    },
-                    child: const Text(
-                      'Buy Ticket',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                          },
+                        );
+                      },
+                      child: const Text(
+                        'Buy Ticket',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 ),
