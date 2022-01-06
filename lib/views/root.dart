@@ -3,6 +3,7 @@ import 'package:cinema_app/views/profile.dart';
 import 'package:cinema_app/views/show_time.dart';
 import 'package:cinema_app/views/tickets.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -35,8 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedFontSize: 12,
-        unselectedFontSize: 12,
+        selectedFontSize: 11.sp,
+        unselectedFontSize: 9.sp,
         selectedItemColor: Colors.deepOrange,
         unselectedItemColor: Colors.grey,
         //unselectedLabelStyle: const TextStyle(color: Colors.grey),
