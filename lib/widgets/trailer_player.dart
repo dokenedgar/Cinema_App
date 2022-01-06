@@ -1,12 +1,11 @@
 import 'package:cinema_app/models/movie.dart';
 import 'package:cinema_app/view_model/explode_youtube_link.dart';
-import 'package:cinema_app/widgets/shimmer_genres_loading.dart';
 import 'package:cinema_app/widgets/shimmer_loading_image.dart';
 import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/services.dart';
+import 'package:sizer/sizer.dart';
 import 'package:video_player/video_player.dart';
-import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 
 class TrailerPlayer extends StatefulWidget {
   const TrailerPlayer({Key? key, required this.movie}) : super(key: key);
@@ -58,7 +57,7 @@ class _TrailerPlayerState extends State<TrailerPlayer> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+              padding:  EdgeInsets.symmetric(horizontal: 6.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -79,9 +78,9 @@ class _TrailerPlayerState extends State<TrailerPlayer> {
                       controller: _chewieController,
                     ),
                   )
-                : const SizedBox(
-                    height: 500,
-                    child: ShimmerLoadingImage(
+                :  SizedBox(
+                    height: 50.h,
+                    child: const ShimmerLoadingImage(
                       duration: Duration(milliseconds: 500),
                     ),
                   ),

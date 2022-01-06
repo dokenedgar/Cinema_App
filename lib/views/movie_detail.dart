@@ -214,7 +214,7 @@ class _MovieDetailState extends State<MovieDetail> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 20.0),
+              padding:  EdgeInsets.only(right: 5.w),
               child: Align(
                 alignment: Alignment.bottomRight,
                 child: Visibility(
